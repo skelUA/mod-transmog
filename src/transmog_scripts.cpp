@@ -751,7 +751,7 @@ public:
                         else
                         {
                             // Add invisible item entry
-                            AddGossipItemFor(player, GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/inv_misc_enggizmos_27:30:30:-18:0|t" + GetLocaleText(locale, "hide_slot"), slot, UINT_MAX, GetLocaleText(locale, "confirm_hide_item") + lineEnd, GetHideCost(), false);
+                            AddGossipItemFor(player, GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/inv_misc_enggizmos_27:30:30:-18:0|t" + GetLocaleText(locale, "hide_slot"), slot, UINT_MAX, GetLocaleText(locale, "confirm_hide_item") + lineEnd, sT->GetHideCost(), false);
                         }
                     }
                     for (uint32 newItemEntryId : sT->collectionCache[accountId]) {
