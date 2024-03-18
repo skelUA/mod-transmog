@@ -246,6 +246,10 @@ Transmogrification.IgnoreReqStats = 0
 #    Transmogrification.SetCopperCost
 #        Description: Cost added on top of other costs (can be negative)
 #        Default:    0
+#
+#    Transmogrification.HideCost
+#        Description: Cost for Hide items
+#        Default:    10000000
 
 Transmogrification.EnableSets = 1
 Transmogrification.MaxSets = 10
@@ -255,6 +259,7 @@ Transmogrification.SetNpcText = 601084
 
 Transmogrification.SetCostModifier = 3.0
 Transmogrification.SetCopperCost = 0
+Transmogrification.HideCost = 10000000
 
 #
 #    TRANSMOG PLUS
