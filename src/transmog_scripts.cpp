@@ -652,6 +652,7 @@ public:
                                 continue;
                             cost += sT->GetSpecialPrice(temp);
                         }
+                        else  cost += sT->GetHideCost();
                         items[slot] = entry;
                     }
                 }
