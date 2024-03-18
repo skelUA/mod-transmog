@@ -106,6 +106,7 @@ public:
     uint8 GetMaxSets() const;
     float GetSetCostModifier() const;
     int32 GetSetCopperCost() const;
+    int32 GetHideCost() const;
 
     void LoadPlayerSets(ObjectGuid pGUID);
     void UnloadPlayerSets(ObjectGuid pGUID);
