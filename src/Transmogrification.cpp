@@ -104,6 +104,10 @@ int32 Transmogrification::GetSetCopperCost() const
 {
     return SetCopperCost;
 }
+int32 Transmogrification::GetHideCost() const
+{
+    return HideCost;
+}
 
 void Transmogrification::UnloadPlayerSets(ObjectGuid pGUID)
 {

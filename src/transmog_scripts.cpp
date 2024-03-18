@@ -691,7 +691,7 @@ public:
         Item* oldItem = player->GetItemByPos(INVENTORY_SLOT_BAG_0, slot);
         bool sendGossip = true;
         bool hasSearchString;
-        int HideCost;
+
         if (oldItem)
         {
             uint32 price = sT->GetSpecialPrice(oldItem->GetTemplate());
@@ -751,7 +751,7 @@ public:
                         else
                         {
                             // Add invisible item entry
-                            AddGossipItemFor(player, GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/inv_misc_enggizmos_27:30:30:-18:0|t" + GetLocaleText(locale, "hide_slot"), slot, UINT_MAX, GetLocaleText(locale, "confirm_hide_item") + lineEnd, HideCost, false);
+                            AddGossipItemFor(player, GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/inv_misc_enggizmos_27:30:30:-18:0|t" + GetLocaleText(locale, "hide_slot"), slot, UINT_MAX, GetLocaleText(locale, "confirm_hide_item") + lineEnd, GetHideCost(), false);
                         }
                     }
                     for (uint32 newItemEntryId : sT->collectionCache[accountId]) {
