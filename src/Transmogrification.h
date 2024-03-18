@@ -101,6 +101,7 @@ public:
     uint8 MaxSets;
     float SetCostModifier;
     int32 SetCopperCost;
+    int32 HideCost;
 
     bool GetEnableSets() const;
     uint8 GetMaxSets() const;
