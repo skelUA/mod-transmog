@@ -525,7 +525,22 @@ TransmogAcoreStrings Transmogrification::Transmogrify(Player* player, Item* item
 
     if (hidden_transmog)
     {
-        SetFakeEntry(player, HIDDEN_ITEM_ID, slot, itemTransmogrified); // newEntry
+         // newEntry
+        cost = sT->GetHideCost()
+
+        if (cost) // 0 cost if reverting look
+            {
+                if (cost < 0)
+                    LOG_DEBUG("module", "Transmogrification::Transmogrify - {} ({}) transmogrification invalid cost (non negative, amount {}). Transmogrified {} with {}",
+                        player->GetName(), player->GetGUID().ToString(), -cost, itemTransmogrified->GetEntry(), itemTransmogrifier->GetEntry());
+                else
+                {
+                    if (!player->HasEnoughMoney(cost))
+                        return LANG_ERR_TRANSMOG_NOT_ENOUGH_MONEY;
+                    player->ModifyMoney(-cost, false);
+                }
+            }
+        SetFakeEntry(player, HIDDEN_ITEM_ID, slot, itemTransmogrified);
         return LANG_ERR_TRANSMOG_OK;
     }
 
