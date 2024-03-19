@@ -526,7 +526,7 @@ TransmogAcoreStrings Transmogrification::Transmogrify(Player* player, Item* item
     if (hidden_transmog)
     {
          // newEntry
-        cost = sT->GetHideCost()
+        cost = sT->GetHideCost();
 
         if (cost) // 0 cost if reverting look
             {
