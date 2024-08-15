@@ -21,6 +21,7 @@ Cant transmogrify rediculus items // Foereaper: would be fun to stab people with
 */
 #include <unordered_map>
 #include "Transmogrification.h"
+#include "Chat.h"
 #include "ScriptedCreature.h"
 #include "ItemTemplate.h"
 #include "DatabaseEnv.h"
@@ -442,7 +443,7 @@ public:
                     CharacterDatabase.CommitTransaction(trans);
                 }
                 else
-                    session->SendNotification(LANG_ERR_UNTRANSMOG_NO_TRANSMOGS);
+                    ChatHandler(session).SendNotification(LANG_ERR_UNTRANSMOG_NO_TRANSMOGS);
                 OnGossipHello(player, creature);
             } break;
             case EQUIPMENT_SLOT_END + 3: // Remove Transmogrification from single item
@@ -455,7 +456,7 @@ public:
                         session->SendAreaTriggerMessage("%s", GTS(LANG_ERR_UNTRANSMOG_OK));
                     }
                     else
-                        session->SendNotification(LANG_ERR_UNTRANSMOG_NO_TRANSMOGS);
+                        ChatHandler(session).SendNotification(LANG_ERR_UNTRANSMOG_NO_TRANSMOGS);
                 }
                 OnGossipSelect(player, creature, EQUIPMENT_SLOT_END, action);
             } break;
@@ -582,7 +583,7 @@ public:
                     if (res == LANG_ERR_TRANSMOG_OK)
                         session->SendAreaTriggerMessage("%s",GTS(LANG_ERR_TRANSMOG_OK));
                     else
-                        session->SendNotification(res);
+                        ChatHandler(session).SendNotification(res);
                 }
                 else
                 {
@@ -590,7 +591,7 @@ public:
                     if (res == LANG_ERR_TRANSMOG_OK)
                         session->SendAreaTriggerMessage("%s",GTS(LANG_ERR_TRANSMOG_OK));
                     else
-                        session->SendNotification(res);
+                        ChatHandler(session).SendNotification(res);
                 }
                 // OnGossipSelect(player, creature, EQUIPMENT_SLOT_END, sender);
                 // ShowTransmogItems(player, creature, sender);
@@ -624,7 +625,7 @@ public:
         }
         std::string name(code);
         if (name.find('"') != std::string::npos || name.find('\\') != std::string::npos)
-            player->GetSession()->SendNotification(LANG_PRESET_ERR_INVALID_NAME);
+            ChatHandler(player->GetSession()).SendNotification(LANG_PRESET_ERR_INVALID_NAME);
         else
         {
             for (uint8 presetID = 0; presetID < sT->GetMaxSets(); ++presetID) // should never reach over max
@@ -661,7 +662,7 @@ public:
                 cost += sT->GetSetCopperCost();
                 if (!player->HasEnoughMoney(cost))
                 {
-                    player->GetSession()->SendNotification(LANG_ERR_TRANSMOG_NOT_ENOUGH_MONEY);
+                    ChatHandler(player->GetSession()).SendNotification(LANG_ERR_TRANSMOG_NOT_ENOUGH_MONEY);
                     break;
                 }
 
@@ -892,7 +893,7 @@ private:
         if (sT->AddCollectedAppearance(accountId, itemId))
         {
             if (showChatMessage)
-                ChatHandler(player->GetSession()).PSendSysMessage( R"(|c%s|Hitem:%u:0:0:0:0:0:0:0:0|h[%s]|h|r %s)", itemQuality.c_str(), itemId, itemName.c_str(), GetLocaleText(locale, "added_appearance"));
+                ChatHandler(player->GetSession()).PSendSysMessage( R"(|c{}|Hitem:{}:0:0:0:0:0:0:0:0|h[{}]|h|r {})", itemQuality, itemId, itemName, GetLocaleText(locale, "added_appearance"));
 
             CharacterDatabase.Execute( "INSERT INTO custom_unlocked_appearances (account_id, item_template_id) VALUES ({}, {})", accountId, itemId);
         }
