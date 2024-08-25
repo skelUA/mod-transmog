@@ -1267,6 +1267,12 @@ int32 Transmogrification::GetCopperCost() const
 {
     return CopperCost;
 }
+
+int32 Transmogrification::GetHideCost() const
+{
+    return HideCost;
+}
+
 bool Transmogrification::GetRequireToken() const
 {
     return RequireToken;

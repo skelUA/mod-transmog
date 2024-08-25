@@ -115,7 +115,7 @@ public:
     typedef std::unordered_map<uint32, std::string> searchStringMap;
     typedef std::unordered_map<uint32, std::vector<uint32>> transmogPlusData;
     typedef std::unordered_map<ObjectGuid, uint8> selectedSlotMap;
-    
+
     transmogPlusData plusDataMap;
     transmogMap entryMap; // entryMap[pGUID][iGUID] = entry
     transmogData dataMap; // dataMap[iGUID] = pGUID
@@ -141,6 +141,8 @@ public:
     uint8 MaxSets;
     float SetCostModifier;
     int32 SetCopperCost;
+    int32 HideCost;
+    int32 GetHideCost() const;
 
     bool GetEnableSets() const;
     uint8 GetMaxSets() const;
@@ -194,10 +196,10 @@ public:
 
     bool UseCollectionSystem;
     bool UseVendorInterface;
-    
+
     bool AllowHiddenTransmog;
     bool HiddenTransmogIsFree;
-    
+
     bool TrackUnusableItems;
     bool RetroActiveAppearances;
     bool ResetRetroActiveAppearances;
@@ -269,7 +271,7 @@ public:
     uint32 GetHighestAvailableForPlayer(int playerGuid) const;
 
     bool TierAvailable(Player* player, int playerGuid, uint32 tierSpell) const;
-    
+
     bool IsInvTypeMismatchAllowed (const ItemTemplate *source, const ItemTemplate *target) const;
     bool IsSubclassMismatchAllowed (Player *player, const ItemTemplate *source, const ItemTemplate *target) const;
 

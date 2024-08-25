@@ -109,9 +109,14 @@ Transmogrification.EnableSortByQualityAndName = 1
 #        Default:    0
 #
 #    For custom gold cost set ScaledCostModifier to 0.0 and CopperCost to what ever cost you want
+#
+#    Transmogrification.HideCost
+#        Description: Cost for Hide items
+#        Default:    10000000
 
 Transmogrification.ScaledCostModifier = 1.0
 Transmogrification.CopperCost = 0
+Transmogrification.HideCost = 10000000
 
 #
 #    TOKEN COST

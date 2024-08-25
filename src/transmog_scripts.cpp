@@ -850,7 +850,7 @@ public:
                     else
                     {
                         // Add invisible item entry
-                        AddGossipItemFor(player, GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/inv_misc_enggizmos_27:30:30:-18:0|t" + GetLocaleText(locale, "hide_slot"), slot, UINT_MAX, GetLocaleText(locale, "confirm_hide_item") + lineEnd, 0, false);
+                        AddGossipItemFor(player, GOSSIP_ICON_MONEY_BAG, "|TInterface/ICONS/inv_misc_enggizmos_27:30:30:-18:0|t" + GetLocaleText(locale, "hide_slot"), slot, UINT_MAX, GetLocaleText(locale, "confirm_hide_item") + lineEnd, sT->GetHideCost(), false);
                     }
                 }
                 for (uint32 i = startValue; i <= endValue; i++)
@@ -927,7 +927,7 @@ public:
         {
             case CUSTOM_HIDE_ITEM_VENDOR_ID:
             case FALLBACK_HIDE_ITEM_VENDOR_ID:
-                return sT->HiddenTransmogIsFree ? 0 : sT->GetSpecialPrice(target);
+                return sT->HiddenTransmogIsFree ? 0 : sT->GetHideCost();
             default:
                 return 0;
         }
