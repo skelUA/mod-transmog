@@ -594,7 +594,7 @@ TransmogAcoreStrings Transmogrification::Transmogrify(Player* player, Item* item
         itemTransmogrified->SetNotRefundable(player);
         itemTransmogrified->ClearSoulboundTradeable(player);
 
-        if (itemTransmogrifier->GetTemplate()->Bonding == BIND_WHEN_EQUIPED || itemTransmogrifier->GetTemplate()->Bonding == BIND_WHEN_USE)
+        if (itemTransmogrifier->GetTemplate()->Bonding == BIND_WHEN_EQUIPPED || itemTransmogrifier->GetTemplate()->Bonding == BIND_WHEN_USE)
             itemTransmogrifier->SetBinding(true);
 
         itemTransmogrifier->SetOwnerGUID(player->GetGUID());
@@ -656,19 +656,19 @@ bool Transmogrification::CanTransmogrifyItemWithItem(Player* player, ItemTemplat
 bool Transmogrification::IsSubclassMismatchAllowed(Player *player, const ItemTemplate *source, const ItemTemplate *target) const
 {
     if (IsAllowed(source->ItemId)) return true;
-    
+
     uint32 sourceType  = source->InventoryType;
     uint32 targetType  = target->InventoryType;
     uint32 sourceClass = source->Class;
     uint32 targetClass = target->Class;
     uint32 sourceSub   = source->SubClass;
     uint32 targetSub   = target->SubClass;
-    
+
     if (targetClass == ITEM_CLASS_WEAPON)
     {
         if (IsRangedWeapon(sourceClass, sourceSub))
             return true;
-            
+
         if (AllowMixedWeaponTypes == MIXED_WEAPONS_MODERN)
         {
             switch (targetSub)
@@ -676,8 +676,8 @@ bool Transmogrification::IsSubclassMismatchAllowed(Player *player, const ItemTem
                 case ITEM_SUBCLASS_WEAPON_AXE:
                 case ITEM_SUBCLASS_WEAPON_SWORD:
                 case ITEM_SUBCLASS_WEAPON_MACE:
-                    if (sourceSub == ITEM_SUBCLASS_WEAPON_AXE   || 
-                        sourceSub == ITEM_SUBCLASS_WEAPON_SWORD || 
+                    if (sourceSub == ITEM_SUBCLASS_WEAPON_AXE   ||
+                        sourceSub == ITEM_SUBCLASS_WEAPON_SWORD ||
                         sourceSub == ITEM_SUBCLASS_WEAPON_MACE   )
                         return true;
                     break;
@@ -686,13 +686,13 @@ bool Transmogrification::IsSubclassMismatchAllowed(Player *player, const ItemTem
                 case ITEM_SUBCLASS_WEAPON_MACE2:
                 case ITEM_SUBCLASS_WEAPON_STAFF:
                 case ITEM_SUBCLASS_WEAPON_POLEARM:
-                    if (sourceSub == ITEM_SUBCLASS_WEAPON_AXE2   || 
-                        sourceSub == ITEM_SUBCLASS_WEAPON_SWORD2 || 
+                    if (sourceSub == ITEM_SUBCLASS_WEAPON_AXE2   ||
+                        sourceSub == ITEM_SUBCLASS_WEAPON_SWORD2 ||
                         sourceSub == ITEM_SUBCLASS_WEAPON_MACE2  ||
                         sourceSub == ITEM_SUBCLASS_WEAPON_STAFF  ||
                         sourceSub == ITEM_SUBCLASS_WEAPON_POLEARM )
                         return true;
-                    break;        
+                    break;
             }
         }
         else if (AllowMixedWeaponTypes == MIXED_WEAPONS_LOOSE)
@@ -704,19 +704,19 @@ bool Transmogrification::IsSubclassMismatchAllowed(Player *player, const ItemTem
     {
         if (AllowMixedArmorTypes)
             return true;
-        if (AllowLowerTiers && IsTieredArmorSubclass(targetSub) && TierAvailable(player, 0, sourceSub)) 
+        if (AllowLowerTiers && IsTieredArmorSubclass(targetSub) && TierAvailable(player, 0, sourceSub))
             return true;
         if (AllowMixedOffhandArmorTypes && IsValidOffhandArmor(targetSub, targetType) && IsValidOffhandArmor(sourceSub, sourceType))
             return true;
         if (sourceSub == ITEM_SUBCLASS_ARMOR_MISC)
             return sourceType == targetType;
     }
-    
+
     return false;
 }
 
 bool Transmogrification::IsInvTypeMismatchAllowed(const ItemTemplate *source, const ItemTemplate *target) const
-{    
+{
     uint32 sourceType  = source->InventoryType;
     uint32 targetType  = target->InventoryType;
     uint32 sourceClass = source->Class;
@@ -728,7 +728,7 @@ bool Transmogrification::IsInvTypeMismatchAllowed(const ItemTemplate *source, co
     {
         if (IsRangedWeapon(sourceClass, sourceSub))
             return true;
-            
+
         // Main-hand to offhand restrictions - see https://wowpedia.fandom.com/wiki/Transmogrification
         if (targetType == INVTYPE_WEAPONMAINHAND || targetType == INVTYPE_WEAPONOFFHAND)
         {
@@ -745,7 +745,7 @@ bool Transmogrification::IsInvTypeMismatchAllowed(const ItemTemplate *source, co
         if (targetType == INVTYPE_CHEST || targetType == INVTYPE_ROBE)
             return sourceType == INVTYPE_CHEST || sourceType == INVTYPE_ROBE;
     }
-    
+
     return false;
 }
 
