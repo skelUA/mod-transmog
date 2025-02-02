@@ -926,9 +926,9 @@ public:
         switch (itemId)
         {
             case CUSTOM_HIDE_ITEM_VENDOR_ID:
-                return 0;
-            case FALLBACK_HIDE_ITEM_VENDOR_ID:
                 return sT->HiddenTransmogIsFree ? 0 : sT->GetHideCost();
+            case FALLBACK_HIDE_ITEM_VENDOR_ID;
+                return 0;
             default:
                 return 0;
         }
