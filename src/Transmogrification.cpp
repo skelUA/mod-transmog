@@ -798,7 +798,7 @@ bool Transmogrification::SuitableForTransmogrification(Player* player, ItemTempl
     if (proto->HasFlag2(ITEM_FLAG2_FACTION_HORDE) && player->GetTeamId() != TEAM_HORDE)
         return false;
 
-    if (proto->HasFlag2(ITEM_FLAG2_FACTION_HORDE) && player->GetTeamId() != TEAM_ALLIANCE)
+    if (proto->HasFlag2(ITEM_FLAG2_FACTION_ALLIANCE) && player->GetTeamId() != TEAM_ALLIANCE)
         return false;
 
     if (!IgnoreReqClass && (proto->AllowableClass & player->getClassMask()) == 0)
@@ -887,7 +887,7 @@ bool Transmogrification::SuitableForTransmogrification(ObjectGuid guid, ItemTemp
     if (proto->HasFlag2(ITEM_FLAG2_FACTION_HORDE) && playerTeamId != TEAM_HORDE)
         return false;
 
-    if (proto->HasFlag2(ITEM_FLAG2_FACTION_HORDE) && playerTeamId != TEAM_ALLIANCE)
+    if (proto->HasFlag2(ITEM_FLAG2_FACTION_ALLIANCE) && playerTeamId != TEAM_ALLIANCE)
         return false;
 
     if (!IgnoreReqClass && (proto->AllowableClass & playerClassMask) == 0)
