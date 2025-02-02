@@ -927,7 +927,7 @@ public:
         {
             case CUSTOM_HIDE_ITEM_VENDOR_ID:
             case FALLBACK_HIDE_ITEM_VENDOR_ID:
-                return sT->HiddenTransmogIsFree ? 0 : GetHideCost();
+                return sT->HiddenTransmogIsFree ? 0 : sT->GetHideCost();
             default:
                 return 0;
         }
