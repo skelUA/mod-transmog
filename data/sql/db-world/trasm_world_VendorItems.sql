@@ -26,5 +26,5 @@ INSERT INTO `item_template_locale` (`ID`, `locale`, `Name`, `Description`) VALUE
 (@RemoveEntry,"esES", "Borrar transmog", "Eliminar la transmog activa."),
 (@HideEntry,  "esMX", "Ocultar equipado", "Ocultar el objeto en este espacio."),
 (@RemoveEntry,"esMX", "Borrar transmog", "Eliminar la transmog activa."),
-(@HideEntry,  "ruRU", "Скрыть экипированное", "Скрыть предмет в слоте."),
-(@RemoveEntry,"ruRU", "Очистить трансмог", "Удалить активный трансмог.");
+(@HideEntry,  "ruRU", "Сховати екіпіровку", "Сховати предмет у слоті."),
+(@RemoveEntry,"ruRU", "Очистити трансмог", "Видалити активний трасмог.");
