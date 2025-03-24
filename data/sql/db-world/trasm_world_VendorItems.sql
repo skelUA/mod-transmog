@@ -28,3 +28,4 @@ INSERT INTO `item_template_locale` (`ID`, `locale`, `Name`, `Description`) VALUE
 (@RemoveEntry,"esMX", "Borrar transmog", "Eliminar la transmog activa."),
 (@HideEntry,  "ruRU", "Сховати екіпіровку", "Сховати предмет у слоті."),
 (@RemoveEntry,"ruRU", "Очистити трансмог", "Видалити активний трасмог.");
+
