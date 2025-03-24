@@ -1045,7 +1045,18 @@ private:
         player->UpdatePlayerSetting("mod-transmog", SETTING_RETROACTIVE_CHECK, 1);
     }
 public:
-    PS_Transmogrification() : PlayerScript("Player_Transmogrify") { }
+    PS_Transmogrification() : PlayerScript("Player_Transmogrify", {
+        PLAYERHOOK_ON_EQUIP,
+        PLAYERHOOK_ON_LOOT_ITEM,
+        PLAYERHOOK_ON_CREATE_ITEM,
+        PLAYERHOOK_ON_AFTER_STORE_OR_EQUIP_NEW_ITEM,
+        PLAYERHOOK_ON_PLAYER_COMPLETE_QUEST,
+        PLAYERHOOK_ON_AFTER_SET_VISIBLE_ITEM_SLOT,
+        PLAYERHOOK_ON_AFTER_MOVE_ITEM_FROM_INVENTORY,
+        PLAYERHOOK_ON_LOGIN,
+        PLAYERHOOK_ON_LOGOUT,
+        PLAYERHOOK_ON_BEFORE_BUY_ITEM_FROM_VENDOR
+    }) { }
 
     void OnPlayerEquip(Player* player, Item* it, uint8 /*bag*/, uint8 /*slot*/, bool /*update*/) override
     {
@@ -1216,7 +1227,10 @@ public:
 class WS_Transmogrification : public WorldScript
 {
 public:
-    WS_Transmogrification() : WorldScript("WS_Transmogrification") { }
+    WS_Transmogrification() : WorldScript("WS_Transmogrification", {
+        WORLDHOOK_ON_AFTER_CONFIG_LOAD,
+        WORLDHOOK_ON_STARTUP
+    }) { }
 
     void OnAfterConfigLoad(bool reload) override
     {
@@ -1259,7 +1273,10 @@ public:
 class global_transmog_script : public GlobalScript
 {
 public:
-    global_transmog_script() : GlobalScript("global_transmog_script") { }
+    global_transmog_script() : GlobalScript("global_transmog_script", {
+        GLOBALHOOK_ON_ITEM_DEL_FROM_DB,
+        GLOBALHOOK_ON_MIRRORIMAGE_DISPLAY_ITEM
+    }) { }
 
     void OnItemDelFromDB(CharacterDatabaseTransaction trans, ObjectGuid::LowType itemGuid) override
     {
@@ -1285,7 +1302,10 @@ public:
 class unit_transmog_script : public UnitScript
 {
 public:
-    unit_transmog_script() : UnitScript("unit_transmog_script") { }
+    unit_transmog_script() : UnitScript("unit_transmog_script", true, {
+        UNITHOOK_SHOULD_TRACK_VALUES_UPDATE_POS_BY_INDEX,
+        UNITHOOK_ON_PATCH_VALUES_UPDATE
+    }) { }
 
     bool ShouldTrackValuesUpdatePosByIndex(Unit const* unit, uint8 /*updateType*/, uint16 index) override
     {
